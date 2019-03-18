@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient,HttpHeaders} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
+
+import {Observable, throwError} from 'rxjs'
 
 
 @Injectable({
@@ -13,7 +15,7 @@ export class PlayService {
 
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) { }
   
-  getCredenciales(){
+getCredenciales(){
     this.activatedRoute.queryParams.subscribe(url => {
       localStorage.setItem('invitation', url["invitation"]);
       localStorage.setItem('validation', url["validation"]);
@@ -37,9 +39,15 @@ export class PlayService {
 
    getInfo(){
 
-     const invitation: String = localStorage.getItem('invitation');
-       
-       return this.http.get(`${this.API_INFO}${invitation}`);
+
+      let header = new HttpHeaders();
+      header.append('Content-Type', 'application/json');
+       console.log(localStorage.getItem('invitation'));
+       return this.http.get(this.API_INFO + localStorage.getItem('invitation'), { headers: header});
 
    }
+
+   handleErrors(error: Response) {
+    return throwError(error);
+  }
 }
