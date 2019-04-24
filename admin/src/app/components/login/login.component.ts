@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-
-import  {AdminService} from '../../services/admin.service';
+import {AdminService} from '../../services/admin.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,17 +9,34 @@ import  {AdminService} from '../../services/admin.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private rest: AdminService ) { }
+  public user;
+  public password;
+  public error: boolean = false;
+
+
+  constructor(private rest: AdminService, private router: Router) { }
 
   ngOnInit() {
+  }
 
-    this.rest.login().subscribe(
-      res => {
-        console.log(res);
+  login(){
+
+    return this.rest.login(this.user, this.password).subscribe(
+      data =>{
+        const token = data['token'];
+        this.rest.setToken(token);
+        this.router.navigateByUrl('main');
+        this.error = false;
       },
-      err => {
-        console.error(err);
-      }
+      error => this.errorLogin()
+
     );
-}
+
+  }
+
+  errorLogin(){
+    this.error = true;
+  }
+
+
 }
