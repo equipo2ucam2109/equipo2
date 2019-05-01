@@ -1,9 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
-<h1>Admin selecciona puntos</h1>
-<form [formGroup] = "form">
-  <input type="number" formControlName="points" id="score">
-</form>
-<button (click)="puntos()">Puntos</button>
-<h1>Puntos {{points}}</h1>
-<router-outlet></router-outlet>
+
+<div class="container p-4">
+  <router-outlet></router-outlet>
+</div>

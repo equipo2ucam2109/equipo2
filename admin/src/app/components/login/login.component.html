@@ -1,0 +1,29 @@
+<body>
+    <div class="alert alert-dismissible alert-primary" *ngIf="loginOk == false">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Error!</strong> Intenta iniciar sesión de nuevo.
+      </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Login</h5>
+            <form class="form-signin">
+              <div class="form-label-group">
+                <label for="inputEmail">Usuario</label>
+                <input type="text"  class="form-control" placeholder="Introduce Uuario" required autofocus name="user" [(ngModel)]="user">               
+              </div>
+              <div class="form-label-group">
+                <label for="inputPassword">Contraseña</label>
+                <input type="password"  class="form-control" placeholder="Introduce la contraseña" required name="password" [(ngModel)]="password">
+              </div>
+              <br>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="login()">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
