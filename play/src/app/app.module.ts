@@ -4,6 +4,9 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {RouterModule} from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
+
 
 
 @NgModule({
@@ -14,6 +17,7 @@ import {RouterModule} from '@angular/router';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     RouterModule
   ],
   providers: [],
