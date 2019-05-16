@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
 import {Router} from '@angular/router';
-import { FormBuilder, FormGroup } from  '@angular/forms';
+import { FormBuilder, FormGroup, SelectMultipleControlValueAccessor } from  '@angular/forms';
 import {Imagen} from '../../model/model';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 
 @Component({
@@ -20,6 +21,11 @@ export class MainComponent implements OnInit {
 
   public add:boolean = false;
   public delete: boolean = false;
+  //cropper img
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  showCropper = false;
+  //end cropper
 
   items: any = [];
 
@@ -35,9 +41,9 @@ export class MainComponent implements OnInit {
     });
   }
 
-  onFileChange(event){
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
+  onFileChange(img){
+    if (img != null) {
+      const file = img;
       this.form.get('imagen').setValue(file);
       this.addImagen();
       
@@ -68,7 +74,10 @@ export class MainComponent implements OnInit {
     
     }
 
-  addItem(){
+  addItem(img){
+
+    this.onFileChange(img);
+
 
     let item: Imagen = {
       _id: '',
@@ -86,6 +95,7 @@ export class MainComponent implements OnInit {
       },
       err => console.error(err)
     );
+
   }
    
 
@@ -122,5 +132,26 @@ export class MainComponent implements OnInit {
     );
   }
 
+
+//funciones cropper
+fileChangeEvent(event: any): void {
+  this.imageChangedEvent = event;
+}
+imageCropped(event: ImageCroppedEvent) {
+  this.croppedImage = event.base64;
+  console.log(event);
+}
+imageLoaded() {
+  this.showCropper = true;
+  console.log('Image loaded');
+}
+cropperReady() {
+  console.log('Cropper ready');
+}
+loadImageFailed() {
+  // show message
+}
+
+//end funciones cropper
 
 }
