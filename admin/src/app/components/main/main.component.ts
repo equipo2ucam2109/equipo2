@@ -134,6 +134,7 @@ imageCropped(event: ImageCroppedEvent) {
   this.croppedImage = event.base64;
   this.croppedImageFile=event.file;
   console.log('Image cropped', event);
+  this.addImagen();
 }
 imageLoaded() {
   this.showCropper = true;
