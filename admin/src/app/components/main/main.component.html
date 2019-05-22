@@ -463,8 +463,8 @@
                             <image-cropper
                                 [imageChangedEvent]="imageChangedEvent"
                                 [maintainAspectRatio]="true"
-                                [aspectRatio]="4 / 3"
-                                [resizeToWidth]="224"
+                                [aspectRatio]="4 / 4"
+                                [resizeToWidth]="300"
                                 format="png"
                                 (imageCropped)="imageCropped($event)"
                                 (imageLoaded)="imageLoaded()"
@@ -481,7 +481,7 @@
                           </div>
                           
                           
-                          <button type="submit" class="btn btn-primary" (click) = addItem(img) >Añadir</button>
+                          <button type="submit" class="btn btn-primary" (click) = addImagen() >Añadir</button>
                         </fieldset>
                       </form>
                       

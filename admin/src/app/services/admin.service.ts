@@ -50,6 +50,14 @@ export class AdminService {
     return localStorage.getItem("token");
   }
 
+  isLogged() {
+    if (this.getToken() != null) {
+      return true;
+    }
+    else
+      return false;
+  }
+
  
 
   postImagen(file){

@@ -24,6 +24,7 @@ export class MainComponent implements OnInit {
   //cropper img
   imageChangedEvent: any = '';
   croppedImage: any = '';
+  croppedImageFile: any = '';
   showCropper = false;
   //end cropper
 
@@ -41,19 +42,10 @@ export class MainComponent implements OnInit {
     });
   }
 
-  onFileChange(img){
-    if (img != null) {
-      const file = img;
-      this.form.get('imagen').setValue(file);
-      this.addImagen();
-      
-    }
-  }
-
   addImagen(){
 
     const formData = new FormData();
-    formData.append('file', this.form.get('imagen').value);
+    formData.append('file', this.croppedImageFile);
 
     this.rest.postImagen(formData).subscribe(
       res => {
@@ -66,18 +58,19 @@ export class MainComponent implements OnInit {
             console.log(this.imagenURL);
           }
         }
+        //console.log(res);
+        //this.getItems();
+        //this.add = true;
         
       } ,
       err => console.log(err)
     );
 
+    //this.addItem();
     
     }
 
-  addItem(img){
-
-    this.onFileChange(img);
-
+  addItem(){
 
     let item: Imagen = {
       _id: '',
@@ -139,7 +132,8 @@ fileChangeEvent(event: any): void {
 }
 imageCropped(event: ImageCroppedEvent) {
   this.croppedImage = event.base64;
-  console.log(event);
+  this.croppedImageFile=event.file;
+  console.log('Image cropped', event);
 }
 imageLoaded() {
   this.showCropper = true;

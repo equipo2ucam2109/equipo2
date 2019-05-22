@@ -8,6 +8,7 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import {ImageCropperModule} from 'ngx-image-cropper';
+import {CanActivateViaAuthGuard} from './canactivate';
 
 
 
@@ -25,7 +26,7 @@ import {ImageCropperModule} from 'ngx-image-cropper';
     FormsModule,
     ImageCropperModule 
   ],
-  providers: [],
+  providers: [CanActivateViaAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
