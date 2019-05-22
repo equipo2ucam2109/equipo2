@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
 import {Router} from '@angular/router';
-import { FormBuilder, FormGroup } from  '@angular/forms';
+import { FormBuilder, FormGroup, SelectMultipleControlValueAccessor } from  '@angular/forms';
 import {Imagen} from '../../model/model';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 
 @Component({
@@ -20,6 +21,12 @@ export class MainComponent implements OnInit {
 
   public add:boolean = false;
   public delete: boolean = false;
+  //cropper img
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  croppedImageFile: any = '';
+  showCropper = false;
+  //end cropper
 
   items: any = [];
 
@@ -35,19 +42,10 @@ export class MainComponent implements OnInit {
     });
   }
 
-  onFileChange(event){
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.form.get('imagen').setValue(file);
-      this.addImagen();
-      
-    }
-  }
-
   addImagen(){
 
     const formData = new FormData();
-    formData.append('file', this.form.get('imagen').value);
+    formData.append('file', this.croppedImageFile);
 
     this.rest.postImagen(formData).subscribe(
       res => {
@@ -60,11 +58,15 @@ export class MainComponent implements OnInit {
             console.log(this.imagenURL);
           }
         }
+        //console.log(res);
+        //this.getItems();
+        //this.add = true;
         
       } ,
       err => console.log(err)
     );
 
+    //this.addItem();
     
     }
 
@@ -86,6 +88,7 @@ export class MainComponent implements OnInit {
       },
       err => console.error(err)
     );
+
   }
    
 
@@ -122,5 +125,28 @@ export class MainComponent implements OnInit {
     );
   }
 
+
+//funciones cropper
+fileChangeEvent(event: any): void {
+  this.imageChangedEvent = event;
+}
+imageCropped(event: ImageCroppedEvent) {
+  this.croppedImage = event.base64;
+  this.croppedImageFile=event.file;
+  console.log('Image cropped', event);
+  this.addImagen();
+}
+imageLoaded() {
+  this.showCropper = true;
+  console.log('Image loaded');
+}
+cropperReady() {
+  console.log('Cropper ready');
+}
+loadImageFailed() {
+  // show message
+}
+
+//end funciones cropper
 
 }
