@@ -9,6 +9,8 @@ import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import {ImageCropperModule} from 'ngx-image-cropper';
 import {CanActivateViaAuthGuard} from './canactivate';
+import { AddImageComponent } from './components/add-image/add-image.component';
+import { ModifyComponent } from './components/modify/modify.component';
 
 
 
@@ -16,7 +18,9 @@ import {CanActivateViaAuthGuard} from './canactivate';
   declarations: [
     AppComponent,
     LoginComponent,
-    MainComponent
+    MainComponent,
+    AddImageComponent,
+    ModifyComponent
   ],
   imports: [
     BrowserModule,

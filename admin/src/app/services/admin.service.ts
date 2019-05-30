@@ -90,6 +90,13 @@ export class AdminService {
   getItems(){
     return this.http.get(this.API_ITEMS, { headers: this.headersHttp });
   }
+  
+  getItem(id){
+    return this.http.get(`${this.API_ITEMS}${id}`,{
+      observe: 'body', 
+      headers: this.headersHttp
+    });
+  }
 
   getImagen(url){
     return this.http.get(`${this.API_ITEMS}${url}`, { headers: this.headersHttp });
