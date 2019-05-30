@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from './components/login/login.component';
 import {MainComponent} from './components/main/main.component';
 import {CanActivateViaAuthGuard} from './canactivate';
+import {AddImageComponent} from './components/add-image/add-image.component';
+import {ModifyComponent} from './components/modify/modify.component';
 
 const routes: Routes = [
   {
@@ -19,6 +21,14 @@ const routes: Routes = [
     redirectTo: 'main',
     pathMatch: 'full'
     
+  },
+  {
+    path:'add',
+    component: AddImageComponent
+  },
+  {
+    path:'',
+    component: ModifyComponent
   }
 
 ];
