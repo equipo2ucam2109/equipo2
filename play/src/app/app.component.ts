@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-
+    var context = document.getElementById('puzzle').getContext('2d');
     
 
     this.play.getInfo().subscribe(
