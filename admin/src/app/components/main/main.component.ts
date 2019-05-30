@@ -29,7 +29,7 @@ export class MainComponent implements OnInit {
   //end cropper
 
   items: any = [];
-
+  item: any = [];
 
   form: FormGroup;
  
