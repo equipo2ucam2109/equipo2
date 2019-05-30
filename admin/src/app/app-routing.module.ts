@@ -27,7 +27,7 @@ const routes: Routes = [
     component: AddImageComponent
   },
   {
-    path:'',
+    path:'modify',
     component: ModifyComponent
   }
 
