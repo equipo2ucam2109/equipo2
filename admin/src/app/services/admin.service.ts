@@ -80,7 +80,7 @@ export class AdminService {
     
   }
 
-  delItems(id){
+  delItem(id){
 
     return this.http.delete(`${this.API_ITEMS}${id}`,{
       observe: 'body', 
@@ -100,6 +100,14 @@ export class AdminService {
 
   getImagen(url){
     return this.http.get(`${this.API_ITEMS}${url}`, { headers: this.headersHttp });
+  }
+
+  updateItem(id, imagen: Imagen){
+
+    return this.http.put(`${this.API_ITEMS}${id}`,imagen,{
+      observe: 'body', 
+      headers: this.headersHttp
+    });
   }
 
   /*getConfig(){

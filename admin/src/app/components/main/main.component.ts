@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import { FormBuilder, FormGroup, SelectMultipleControlValueAccessor } from  '@angular/forms';
 import {Imagen} from '../../model/model';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -32,8 +33,11 @@ export class MainComponent implements OnInit {
   item: any = [];
 
   form: FormGroup;
- 
-  constructor(private rest: AdminService, private router: Router, private formBuilder: FormBuilder) { }
+  
+  showAlert=false;
+  obraAv;
+
+  constructor(private rest: AdminService, private router: Router, private formBuilder: FormBuilder,private toastr: ToastrService) { }
 
   ngOnInit() {
 
@@ -54,7 +58,7 @@ export class MainComponent implements OnInit {
   }
 
   deleteItem(id){
-    this.rest.delItems(id).subscribe(
+    this.rest.delItem(id).subscribe(
       res => {
         console.log('Eliminado ' + res);
         this.getItems();
@@ -74,5 +78,33 @@ export class MainComponent implements OnInit {
     );
     console.log(id);
   }
+
+
+  copyMessage(val: string){
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+    this.showToaster(val + " Copiado al portapeles");
+  }
+//mensaje de confirmaciones
+  showToaster(msg){
+    this.toastr.success(msg)
+}
+
+clickMethod(itemId) {
+  if(confirm("Are you sure to delete "+itemId)) {
+    this.deleteItem(itemId)
+    this.showToaster(itemId + " Se ha borrado correctamente");
+  }
+}
+//(click)="deleteItem(i._id)"
 
 }

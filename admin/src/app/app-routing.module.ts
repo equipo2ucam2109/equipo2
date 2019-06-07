@@ -29,6 +29,10 @@ const routes: Routes = [
   {
     path:'modify',
    component: ModifyComponent
+  },
+  {
+    path:'modify/:id',
+   component: ModifyComponent
   }
 
 ];

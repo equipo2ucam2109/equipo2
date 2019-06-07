@@ -11,6 +11,8 @@ import {ImageCropperModule} from 'ngx-image-cropper';
 import {CanActivateViaAuthGuard} from './canactivate';
 import { AddImageComponent } from './components/add-image/add-image.component';
 import { ModifyComponent } from './components/modify/modify.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -28,7 +30,9 @@ import { ModifyComponent } from './components/modify/modify.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    ImageCropperModule 
+    ImageCropperModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot() 
   ],
   providers: [CanActivateViaAuthGuard],
   bootstrap: [AppComponent]

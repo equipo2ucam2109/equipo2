@@ -72,12 +72,13 @@
                                     <td>{{i.nombre}}</td>
                                     <td>{{i.descripcion}}</td>
                                     <td><img src="https://gameserver.centic.ovh{{i.imagenURL}}" alt="" class="img-thumbnail"></td>
-                                    <td><button class="btn btn-danger" (click)="deleteItem(i._id)">Eliminar</button>
-                            <button class="btn btn-warning" (click)="getItem(i._id)" routerLink = "/modify"> Modificar </button>
+                                    <td><button class="btn btn-danger" (click)="clickMethod(i._id)">Eliminar</button>
+
+                            <button class="btn btn-warning" (click)="getItem(i._id)" [routerLink] = "['/modify', i._id]"> Modificar </button>
                         <!--al darle le pasamos id a la pantalla del modify -->
                         </td>
                             <td>
-                            <button class="btn btn-secondary">Copiar Id</button>
+                            <button class="btn btn-secondary"(click)="copyMessage(i._id)">Copiar Id</button>
                         </td>
                                   <td> </td>
                             

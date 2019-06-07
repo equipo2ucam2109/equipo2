@@ -6,14 +6,14 @@
     <fieldset>
         <div class="form-group">
             <label for="id">Nombre</label>
-            <input type="text" class="form-control" name="nombre" [(ngModel)]="nombre" placeholder="{{item.nombre}}">
-            <!--Queremos sacar el nombre pero no nos lo muestra -->
+            <input type="text" class="form-control" name="nombre" [(ngModel)]="nombre" placeholder="{{result.nombre}}">
         </div>
         <div class="form-group">
             <label for="id">Descripcion</label>
-            <input type="text" class="form-control" name="descipcion" [(ngModel)]="descripcion" placeholder="Introduce la descipcion de la imagen">
+            <input type="text" class="form-control" name="descipcion" [(ngModel)]="descripcion" placeholder="{{result.descripcion}}">
         </div>
 
-        <button type="submit" class="btn btn-primary" (click)=addItem() routerLink = "/main">Añadir</button>
+        <button type="submit" class="btn btn-primary" (click)=updateItem() routerLink = "/main">Modificar</button>
+        <!--no nos modifica el objeto -->
     </fieldset>
 </form>
