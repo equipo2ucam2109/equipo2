@@ -3,7 +3,6 @@ import { AdminService } from 'src/app/services/admin.service';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import { FormBuilder, FormGroup, SelectMultipleControlValueAccessor } from  '@angular/forms';
 import {Imagen} from '../../model/model';
-import {MainComponent}from 'src/app/components/main/main.component'
 import { switchMap } from 'rxjs/operators';
 
 @Component({
@@ -15,17 +14,17 @@ export class ModifyComponent implements OnInit {
 
   constructor(private rest: AdminService, private router: Router, private formBuilder: FormBuilder, private _route: ActivatedRoute) { }
 
-  public nombre: string;
+  public nombre: string; 
   public descripcion: string;
   result;
+  id;
 
   ngOnInit() {
     
-    let id = this._route.snapshot.paramMap.get('id');
-    console.log(id);
-    this.getItemId(id);
-    
-   
+    this.id = this._route.snapshot.paramMap.get('id');
+    console.log(this.id);
+    this.getItemId(this.id);
+
   }
   
 
@@ -33,9 +32,7 @@ export class ModifyComponent implements OnInit {
 
     this.rest.getItem(ide).subscribe( res => {
       console.log(res);
-      
       this.result = res;
-      
     },
     err => console.error(err))
 
@@ -49,12 +46,11 @@ export class ModifyComponent implements OnInit {
       imagenURL: this.result.imagenURL
     };
 
-
-    
-    this.rest.updateItem(this.result.id, item).subscribe( res => {
+    this.rest.updateItem(this.id, item).subscribe( res => {
       console.log(res);
+      this.router.navigate(['/main']);
     },
-    err => console.error(err))
+    err => console.error(err));
   }
 
 

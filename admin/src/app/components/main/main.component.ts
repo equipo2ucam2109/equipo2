@@ -37,10 +37,13 @@ export class MainComponent implements OnInit {
   showAlert=false;
   obraAv;
 
-  constructor(private rest: AdminService, private router: Router, private formBuilder: FormBuilder,private toastr: ToastrService) { }
+  constructor(private rest: AdminService, private router: Router, private formBuilder: FormBuilder,private toastr: ToastrService) { 
+    
+  }
 
   ngOnInit() {
 
+    this.rest.getToken();
     this.getItems();
     this.form = this.formBuilder.group({
       imagen: ['']
@@ -48,6 +51,7 @@ export class MainComponent implements OnInit {
   }
    
   getItems(){
+    
     this.rest.getItems().subscribe(
       res => {
         console.log(res);

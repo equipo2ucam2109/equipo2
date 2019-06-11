@@ -1,27 +1,49 @@
-# Play
+# Puzzle Game
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.5.
+**[Demo](https://daniel-projects.firebaseapp.com/games/puzzle)**
 
-## Development server
+<p align="center"><img style="text-align: center;" src="/assets/puzzle.png?raw=true"></p>
+8-puzzle game is a sliding puzzle that consists of a frame of numbered square tiles in random order with one tile missing.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The object of the puzzle is to place the tiles in order (see diagram) by making sliding moves that use the empty space.
 
-## Code scaffolding
+This project was intentionally programmed to solve the n-puzzle problem with artificial inelegance algorithms.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Powered by Angular
+<p align="center"><img style="text-align: center;" src="/assets/game-shot.png?raw=true"></p>
 
-## Build
+## Run Demo App
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
-## Running unit tests
+Clone this repo into new folder
+```
+> git clone https://github.com/DanielYKPan/ng-puzzle
+> cd ng-puzzle
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Install all npm packages
+```
+> npm install
+```
 
-## Running end-to-end tests
+Run the app
+```
+> ng serve
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Navigate to `http://localhost:4200/`
 
-## Further help
+## Checkout Other Game Projects
+**[Daniel Game Projects](https://daniel-projects.firebaseapp.com/games)**
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Author
+
+ **[Daniel Pan](https://daniel-projects.firebaseapp.com/)**
+
+ - [github/DanielYKPan](https://github.com/DanielYKPan)
+ - [twitter/DanielYKPan](https://twitter.com/DanielYKPan)
+
+## License
+
+[![AUR](https://img.shields.io/aur/license/yaourt.svg?style=flat-square)](/LICENSE)

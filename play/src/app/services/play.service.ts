@@ -20,8 +20,8 @@ getCredenciales(){
      // localStorage.setItem('invitation', url["invitation"]);
       //localStorage.setItem('validation', url["validation"]);
       //se usan en local
-     localStorage.setItem('invitation', "e75b2538-4502-11e9-9197-005056873508");
-      localStorage.setItem('validation', "7132879a-4a23-11e9-aa23-005056873508");
+     localStorage.setItem('invitation', "700781c2-70d4-11e9-ad96-005056873508");
+      localStorage.setItem('validation', "707573ee-70d4-11e9-ad96-005056873508");
 
     });
   }
@@ -41,17 +41,4 @@ getCredenciales(){
      return this.http.post(this.API_PONITS, message);
    }
 
-   getInfo(){
-
-
-      let header = new HttpHeaders();
-      header.append('Content-Type', 'application/json');
-       console.log(localStorage.getItem('invitation'));
-       return this.http.get(this.API_INFO + localStorage.getItem('invitation'), { headers: header});
-
-   }
-
-   handleErrors(error: Response) {
-    return throwError(error);
-  }
 }
