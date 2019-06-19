@@ -7,6 +7,12 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
+import {ImageCropperModule} from 'ngx-image-cropper';
+import {CanActivateViaAuthGuard} from './canactivate';
+import { AddImageComponent } from './components/add-image/add-image.component';
+import { ModifyComponent } from './components/modify/modify.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -14,16 +20,21 @@ import { MainComponent } from './components/main/main.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    MainComponent
+    MainComponent,
+    AddImageComponent,
+    ModifyComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ImageCropperModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot() 
   ],
-  providers: [],
+  providers: [CanActivateViaAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

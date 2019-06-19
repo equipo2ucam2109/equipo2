@@ -50,6 +50,14 @@ export class AdminService {
     return localStorage.getItem("token");
   }
 
+  isLogged() {
+    if (this.getToken() != null) {
+      return true;
+    }
+    else
+      return false;
+  }
+
  
 
   postImagen(file){
@@ -72,7 +80,7 @@ export class AdminService {
     
   }
 
-  delItems(id){
+  delItem(id){
 
     return this.http.delete(`${this.API_ITEMS}${id}`,{
       observe: 'body', 
@@ -82,9 +90,24 @@ export class AdminService {
   getItems(){
     return this.http.get(this.API_ITEMS, { headers: this.headersHttp });
   }
+  
+  getItem(id){
+    return this.http.get(`${this.API_ITEMS}${id}`,{
+      observe: 'body', 
+      headers: this.headersHttp
+    });
+  }
 
   getImagen(url){
     return this.http.get(`${this.API_ITEMS}${url}`, { headers: this.headersHttp });
+  }
+
+  updateItem(id, imagen: Imagen){
+
+    return this.http.put(`${this.API_ITEMS}${id}`,imagen,{
+      observe: 'body', 
+      headers: this.headersHttp
+    });
   }
 
   /*getConfig(){

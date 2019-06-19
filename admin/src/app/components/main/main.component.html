@@ -1,63 +1,87 @@
-<div class="alert alert-dismissible alert-success" *ngIf="add == true"> 
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>Ok!</strong> Elemento añadido correctamente.
-  </div>
-<form>
-  <fieldset>
-    <legend>Añadir Imagen</legend>
-    
-    <div class="form-group">
-      <label for="id">Nombre</label>
-      <input type="text" class="form-control" name = "nombre" [(ngModel)]="nombre" placeholder="Introduce nombre de la imagen">
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+            <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+        </div>
+        <!-- /.navbar-header -->
+
+        
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Dashboard</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Lista de Imagenes
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="table-success">
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Descripcion</th>
+                                    <th scope="col">Imágen</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-light" *ngFor="let i of items">
+                                    <th scope="row">{{i._id}}</th>
+                                    <td>{{i.nombre}}</td>
+                                    <td>{{i.descripcion}}</td>
+                                    <td><img src="https://gameserver.centic.ovh{{i.imagenURL}}" alt=""  width="200" height="200"></td>
+                                    <td>
+                                        <p><button class="btn btn-danger" (click)="clickMethod(i._id)">Eliminar</button></p>
+                                        
+                                        <p> <button class="btn btn-warning" (click)="getItem(i._id)" [routerLink] = "['/modify', i._id]"> Modificar </button> </p>
+                                        
+                                        <p> <button class="btn btn-info"(click)="copyMessage(i._id)">Copiar Id</button> </p>
+                                     </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <button class="btn btn-primary" routerLink = "/add">Añadir</button>
+                <br>
+                <br>
+                
+            </div>
+            
+        </div>
     </div>
-    <div class="form-group">
-      <label for="id">Descripcion</label>
-      <input type="text" class="form-control" name = "descipcion" [(ngModel)]="descripcion" placeholder="Introduce la descipcion de la imagen">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputFile">File input</label>
-      <input type="file" class="form-control-file" name = "imagen"  aria-describedby="fileHelp" (change) ="onFileChange($event)" > 
-      
-      
-    </div>
-    
-    
-    <button type="submit" class="btn btn-primary" (click) = addItem() >Añadir</button>
-  </fieldset>
-</form>
 
-<br>
-<br>
-
-<div class="alert alert-dismissible alert-danger" *ngIf="delete == true">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>Eliminado!</strong> Se ha eliminado un elemento de la lista.
-  </div>
-
-
-<h1>Lista de Imágenes</h1>
-<br>
-<table class="table table-hover">
-  <thead>
-    <tr class="table-success">
-      <th scope="col">ID</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Descripcion</th>
-      <th scope="col">Imágen</th>
-      <th scope="col">Eliminar</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="table-light" *ngFor = "let i of items">
-      <th scope="row">{{i._id}}</th>
-      <td>{{i.nombre}}</td>
-      <td>{{i.descripcion}}</td>
-      <td><img src="https://gameserver.centic.ovh{{i.imagenURL}}" alt="" class="img-thumbnail"></td>
-      <td><button class="btn btn-danger" (click)="deleteItem(i._id)">
-        Eliminar
-      </button></td>
-    </tr>
-  </tbody>
-</table>
-<br>
-<br>
+</div>

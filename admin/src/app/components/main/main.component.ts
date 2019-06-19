@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
 import {Router} from '@angular/router';
-import { FormBuilder, FormGroup } from  '@angular/forms';
+import { FormBuilder, FormGroup, SelectMultipleControlValueAccessor } from  '@angular/forms';
 import {Imagen} from '../../model/model';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -20,76 +22,36 @@ export class MainComponent implements OnInit {
 
   public add:boolean = false;
   public delete: boolean = false;
+  //cropper img
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  croppedImageFile: any = '';
+  showCropper = false;
+  //end cropper
 
   items: any = [];
+  item: any = [];
 
   form: FormGroup;
- 
-  constructor(private rest: AdminService, private router: Router, private formBuilder: FormBuilder) { }
+  
+  showAlert=false;
+  obraAv;
+
+  constructor(private rest: AdminService, private router: Router, private formBuilder: FormBuilder,private toastr: ToastrService) { 
+    
+  }
 
   ngOnInit() {
 
+    this.rest.getToken();
     this.getItems();
     this.form = this.formBuilder.group({
       imagen: ['']
     });
   }
-
-  onFileChange(event){
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.form.get('imagen').setValue(file);
-      this.addImagen();
-      
-    }
-  }
-
-  addImagen(){
-
-    const formData = new FormData();
-    formData.append('file', this.form.get('imagen').value);
-
-    this.rest.postImagen(formData).subscribe(
-      res => {
-       var body = res['body'];
-        console.log(res['body']);
-        for (var key in body){
-          if (key == 'file'){
-            console.log(key + body[key]);
-            this.imagenURL = body[key];
-            console.log(this.imagenURL);
-          }
-        }
-        
-      } ,
-      err => console.log(err)
-    );
-
-    
-    }
-
-  addItem(){
-
-    let item: Imagen = {
-      _id: '',
-      nombre: this.nombre,
-      descripcion: this.descripcion,
-      imagenURL: this.imagenURL
-    };
-
-    this.rest.postItems(item).subscribe(
-      res => {
-        console.log(res);
-        this.getItems();
-        this.add = true;
-        
-      },
-      err => console.error(err)
-    );
-  }
    
-
   getItems(){
+    
     this.rest.getItems().subscribe(
       res => {
         console.log(res);
@@ -100,7 +62,7 @@ export class MainComponent implements OnInit {
   }
 
   deleteItem(id){
-    this.rest.delItems(id).subscribe(
+    this.rest.delItem(id).subscribe(
       res => {
         console.log('Eliminado ' + res);
         this.getItems();
@@ -110,17 +72,43 @@ export class MainComponent implements OnInit {
     );
   }
 
-  getImagen(url){
-
-    this.rest.getImagen(url).subscribe(
-      res=>{
+  getItem(id){
+    this.rest.getItem(id).subscribe(
+      res => {
         console.log(res);
+        this.item = res;
       },
-      err=>{
-        console.log(err);
-      }
+      err => console.error(err)
     );
+    console.log(id);
   }
 
+
+  copyMessage(val: string){
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+    this.showToaster(val + " Copiado al portapeles");
+  }
+//mensaje de confirmaciones
+  showToaster(msg){
+    this.toastr.success(msg)
+}
+
+clickMethod(itemId) {
+  if(confirm("¿Estás seguro que deseas eliminar? "+itemId)) {
+    this.deleteItem(itemId)
+    this.showToaster(itemId + " Se ha borrado correctamente");
+  }
+}
+//(click)="deleteItem(i._id)"
 
 }

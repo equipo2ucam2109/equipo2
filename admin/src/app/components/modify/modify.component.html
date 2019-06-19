@@ -1,0 +1,21 @@
+<div class="alert alert-dismissible alert-success" *ngIf="add == true">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Ok!</strong> Elemento añadido correctamente.
+</div>
+<form>
+    <fieldset>
+        <div class="form-group">
+            <label for="id">Nombre</label>
+            <input type="text" class="form-control" name="nombre" value="{{result.nombre}}" [(ngModel)]="nombre" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="id">Descripcion</label>
+            <input type="text" class="form-control" name="descipcion" value="{{result.descripcion}}" [(ngModel)]="descripcion" placeholder="">
+        </div>
+
+        <button type="submit" class="btn btn-warning" (click)=cancelar() >Cancelar</button> &nbsp; &nbsp; &nbsp; &nbsp;
+        <button type="submit" class="btn btn-success" (click)=updateItem() >Modificar</button>
+       
+        
+    </fieldset>
+</form>
