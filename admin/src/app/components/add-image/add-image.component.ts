@@ -48,7 +48,8 @@ export class AddImageComponent implements OnInit {
       _id: '',
       nombre: this.nombre,
       descripcion: this.descripcion,
-      imagenURL: this.imagenURL
+      imagenURL: this.imagenURL,
+      publish: true
     };
 
     this.rest.postItems(item).subscribe(
@@ -116,6 +117,10 @@ cropperReady() {
 }
 loadImageFailed() {
   // show message
+}
+
+cancelar(){
+  this.router.navigate(['/main']);
 }
 
 }

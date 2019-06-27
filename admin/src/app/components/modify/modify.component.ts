@@ -43,7 +43,8 @@ export class ModifyComponent implements OnInit {
       _id: this.result.id,
       nombre: this.nombre,
       descripcion: this.descripcion,
-      imagenURL: this.result.imagenURL
+      imagenURL: this.result.imagenURL,
+      publish: true
     };
 
     this.rest.updateItem(this.id, item).subscribe( res => {
@@ -51,6 +52,10 @@ export class ModifyComponent implements OnInit {
       this.router.navigate(['/main']);
     },
     err => console.error(err));
+  }
+
+  cancelar(){
+    this.router.navigate(['/main']);
   }
 
 

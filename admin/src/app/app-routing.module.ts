@@ -24,15 +24,18 @@ const routes: Routes = [
   },
   {
     path:'add',
-   component: AddImageComponent
+   component: AddImageComponent,
+   canActivate:[CanActivateViaAuthGuard]
   },
   {
     path:'modify',
-   component: ModifyComponent
+   component: ModifyComponent,
+   canActivate:[CanActivateViaAuthGuard]
   },
   {
     path:'modify/:id',
-   component: ModifyComponent
+   component: ModifyComponent,
+   canActivate:[CanActivateViaAuthGuard]
   }
 
 ];

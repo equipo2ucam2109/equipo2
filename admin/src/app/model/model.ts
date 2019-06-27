@@ -3,4 +3,5 @@ export interface Imagen{
     nombre: string;
     descripcion: string;
     imagenURL: string;
+    publish: boolean;
 }
