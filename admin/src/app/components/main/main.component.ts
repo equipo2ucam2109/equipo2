@@ -104,7 +104,7 @@ export class MainComponent implements OnInit {
 }
 
 clickMethod(itemId) {
-  if(confirm("Are you sure to delete "+itemId)) {
+  if(confirm("¿Estás seguro que deseas eliminar? "+itemId)) {
     this.deleteItem(itemId)
     this.showToaster(itemId + " Se ha borrado correctamente");
   }

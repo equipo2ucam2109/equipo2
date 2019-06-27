@@ -13,7 +13,9 @@
             <input type="text" class="form-control" name="descipcion" value="{{result.descripcion}}" [(ngModel)]="descripcion" placeholder="">
         </div>
 
-        <button type="submit" class="btn btn-primary" (click)=updateItem()>Modificar</button>
-        <!--no nos modifica el objeto -->
+        <button type="submit" class="btn btn-warning" (click)=cancelar() >Cancelar</button> &nbsp; &nbsp; &nbsp; &nbsp;
+        <button type="submit" class="btn btn-success" (click)=updateItem() >Modificar</button>
+       
+        
     </fieldset>
 </form>
